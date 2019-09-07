@@ -1,0 +1,72 @@
+@startuml
+
+interface Coffee{
+    +String getDesc();
+    +float getCost();
+}
+note left of Coffee : 被装饰者接口
+class Decaf{
+    -String desc;
+    -float price;
+    +String getDesc();
+    +float getCost();
+}
+class Espresso{
+    -String desc;
+    -float price;
+    +String getDesc();
+    +float getCost();
+}
+class LongBlack{
+    -String desc;
+    -float price;
+    +String getDesc();
+    +float getCost();
+}
+class ShortBlack{
+    -String desc;
+    -float price;
+    +String getDesc();
+    +float getCost();
+}
+Coffee <|-- Decaf
+Coffee <|-- Espresso
+Coffee <|-- LongBlack
+Coffee <|-- ShortBlack
+
+abstract class Seasoning{
+    -Coffee coffee;
+    +Seasoning(Coffee coffee);
+    +Coffee getCoffee();
+}
+Seasoning o--> Coffee
+note top of Seasoning : 装饰抽象类
+class Chocolate{
+    -String desc = " Chocolate ";
+    -float price = 3.5f;
+    +String getDesc();
+    +float getCost();
+}
+class Milk{
+    -String desc = " Milk ";
+    -float price = 1.5f;
+    +String getDesc();
+    +float getCost();
+}
+class Chocolate{
+    -String desc = " Chocolate ";
+    -float price = 3.5f;
+    +String getDesc();
+    +float getCost();
+}
+class Soy{
+    -String desc = " Soy ";
+    -float price = 0.5f;
+    +String getDesc();
+    +float getCost();
+}
+Seasoning <|-- Chocolate
+Seasoning <|-- Milk
+Seasoning <|-- Soy
+
+@enduml

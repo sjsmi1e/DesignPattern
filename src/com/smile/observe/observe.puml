@@ -1,0 +1,42 @@
+@startuml
+
+interface Observe{
+    +void update(float temperature,float humidity);
+}
+class MyWeb{
+    -String name;
+    +void update(float temperature, float humidity)
+}
+class BaiduWeb{
+    -String name;
+    +void update(float temperature, float humidity)
+}
+Observe <|-- MyWeb
+Observe <|-- BaiduWeb
+note "观察者实现类" as N1
+MyWeb..N1
+BaiduWeb..N1
+
+interface Subject{
+    +void register(Observe observe);
+    +void remove(Observe observe);
+    +void notifyObserve();
+}
+class WeatherData{
+    -float temperature;
+    -float humidity;
+    -List<Observe> observes;
+    +void register(Observe observe);
+    +void remove(Observe observe);
+    +void change(float temperature, float humidity);
+    +void notifyObserve();
+}
+note top of WeatherData : 被观察者实现类
+Subject <|-- WeatherData
+
+Observe <--o WeatherData
+
+Subject <-- Client
+Observe <-- Client
+
+@enduml

@@ -11,6 +11,8 @@ import java.util.function.Consumer;
  */
 public class University implements Component {
     private String desc;
+    private List<Component> colleges = new ArrayList<>();
+
 
     public University(String desc) {
         this.desc = desc;
@@ -23,8 +25,6 @@ public class University implements Component {
     public void setDesc(String desc) {
         this.desc = desc;
     }
-
-    private List<Component> colleges = new ArrayList<>();
 
 
     @Override

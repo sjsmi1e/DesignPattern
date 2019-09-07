@@ -1,0 +1,41 @@
+@startuml
+
+interface Computer{
+    +void on();
+    +void off();
+}
+class CPU{
+    +void on();
+    +void off();
+}
+class Disk{
+    +void on();
+    +void off();
+}
+class Memory{
+    +void on();
+    +void off();
+}
+Computer <|-- CPU
+Computer <|-- Disk
+Computer <|-- Memory
+
+class Facade{
+    -CPU cpu;
+    -Memory memory;
+    -Disk disk;
+    +void on();
+    +void off();
+}
+
+note left of Facade : 外观类
+Computer <|-- Facade
+Facade --> CPU
+Facade --> Disk
+Facade --> Memory
+
+class Client{
+}
+Client --> Facade
+
+@enduml

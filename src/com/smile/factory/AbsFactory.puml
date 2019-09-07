@@ -1,0 +1,67 @@
+@startuml
+
+interface ABSFactory{
+    public ABSFactory getShapeFactory();
+    public ABSFactory getColorFactory();
+}
+interface Color{
+    public void fill();
+}
+interface Shape{
+    public void draw();
+}
+class Black {
+    fill();
+}
+class Green {
+    fill();
+}
+class Red {
+    fill();
+}
+Color <|-- Black
+Color <|-- Green
+Color <|-- Red
+
+class Circle{
+    public void draw();
+}
+class Rectangle{
+    public void draw();
+}
+class Square{
+    public void draw();
+}
+Shape <|-- Circle
+Shape <|-- Rectangle
+Shape <|-- Square
+
+class ColorFactory{
+    public Color getShape(String name);
+    public ABSFactory getShapeFactory();
+    public ABSFactory getColorFactory();
+}
+ColorFactory --> Red
+ColorFactory --> Green
+ColorFactory --> Black
+class ShapeFactory{
+    public Shape getShape(String name);
+    public ABSFactory getShapeFactory();
+    public ABSFactory getColorFactory();
+}
+ShapeFactory --> Circle
+ShapeFactory --> Rectangle
+ShapeFactory --> Square
+ABSFactory <|-- ColorFactory
+ABSFactory <|-- ShapeFactory
+class Factory{
+    public static ABSFactory getFactory(String name);
+}
+Factory --> ShapeFactory
+Factory --> ColorFactory
+
+class Client{
+}
+Client --> Factory
+
+@enduml

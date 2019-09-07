@@ -1,0 +1,45 @@
+@startuml
+
+interface HouseBuilder{
+    +void buildBasic();
+    +void buildBody();
+    +void buildRoof();
+    +House finish();
+}
+class House{
+    -String type;
+    -boolean base;
+    -boolean body;
+    -boolean roof;
+}
+note left of House : 具体产品类
+class CommonHouseBuilder{
+    -House house;
+    +void buildBasic();
+    +void buildBody();
+    +void buildRoof();
+    +House finish();
+}
+class LuxuryHouseBuilder{
+    -House house;
+    +void buildBasic();
+    +void buildBody();
+    +void buildRoof();
+    +House finish();
+}
+
+HouseBuilder <|-- CommonHouseBuilder
+HouseBuilder <|-- LuxuryHouseBuilder
+CommonHouseBuilder o--> House
+LuxuryHouseBuilder o--> House
+
+class Decorate{
+    -HouseBuilder houseBuilder;
+    +House construct();
+}
+note top of Decorate : 具体建造对象
+HouseBuilder <-- Decorate
+class Client{
+}
+Decorate <-- Client
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+
+abstract class ABSBank{
+    +final void action();
+    +void takeTheNumber();
+    +void lineUp();
+    +{abstract} void handlingBusiness();
+    +void evaluate();//钩子方法
+}
+class SaveMoney{
+    +void handlingBusiness();
+}
+class WithdrawMoney{
+    +void handlingBusiness();
+}
+ABSBank <|-- SaveMoney
+ABSBank <|-- WithdrawMoney
+
+@enduml

@@ -1,0 +1,61 @@
+@startuml
+
+interface Command{
+    +void excute();
+    +void undo();
+}
+class Light{
+    +void on();
+    +void off();
+}
+class LightOnCommand{
+    -Light light;
+    +LightOnCommand(Light light);
+    +void excute();
+    +void undo();
+}
+class LightOffCommand{
+    -Light light;
+    +LightOffCommand(Light light);
+    +void excute();
+    +void undo();
+}
+class TV{
+    +void on();
+    +void off();
+}
+class TVOnCommand{
+    -TV tv;
+    +TVOnCommand(TV tv);
+    +void excute();
+    +void undo();
+}
+class TVOffCommand{
+    -TV tv;
+    +TVOffCommand(TV tv);
+    +void excute();
+    +void undo();
+}
+
+Command <|-- LightOnCommand
+Command <|-- LightOffCommand
+Command <|-- TVOnCommand
+Command <|-- TVOffCommand
+LightOffCommand o--> Light
+LightOnCommand o--> Light
+TVOnCommand o--> TV
+TVOffCommand o--> TV
+
+class RemoteControl{
+    -List<Command> list;
+    +void addCtrl(Command command);
+    +void removeCtrl(Command command);
+    +void excute(Command command);
+    +void undo(Command command);
+}
+note left of RemoteControl : 命令发起者
+RemoteControl o--> Command
+note "命令接收者" as N1
+TV .. N1
+Light .. N1
+@enduml

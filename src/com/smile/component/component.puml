@@ -1,0 +1,35 @@
+@startuml
+
+interface Component{
+    +void add(Component Component);
+    +void remove(Component Component);
+    +void show();
+}
+
+class University{
+    -String desc;
+    -List<Component> colleges;
+    +void add(Component component);
+    +void remove(Component component);
+    +void show();
+}
+class College{
+    -String desc;
+    -List<Component> majors;
+    +void add(Component component);
+    +void remove(Component component);
+    +void show();
+}
+class Major{
+    -String desc;
+    +void show();
+}
+note right of Major : 叶子节点
+
+Component <|-- University
+Component <|-- College
+Component <|-- Major
+University o--> College
+College o--> Major
+
+@enduml

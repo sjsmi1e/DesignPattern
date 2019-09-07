@@ -1,0 +1,31 @@
+@startuml
+
+abstract class Abstraction{
+    pImpl:Implement
+    +setImplement():void
+    +operator():void
+}
+note left of Abstraction : 桥接类
+interface Implement{
+    +operation():void
+}
+class A{
+}
+class B{
+}
+Implement <|-- A
+Implement <|-- B
+note left of A: 实体
+note left of B: 实体
+
+Abstraction o-> Implement
+
+class definedAbstraction{
+    +operation():void
+}
+Abstraction <|-- definedAbstraction
+note left of definedAbstraction : 抽象体
+
+
+
+@enduml
