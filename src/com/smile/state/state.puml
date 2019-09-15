@@ -1,0 +1,43 @@
+@startuml
+interface State{
+    +void deductionIntegral();
+    +void luckDraw();
+    +void distributionPrizes();
+}
+
+class NoDraw{
+     +void deductionIntegral();
+     +void luckDraw();
+     +void distributionPrizes();
+}
+class CanDraw{
+     +void deductionIntegral();
+     +void luckDraw();
+     +void distributionPrizes();
+}
+class DistributionPrizes{
+     +void deductionIntegral();
+     +void luckDraw();
+     +void distributionPrizes();
+}
+class Over{
+     +void deductionIntegral();
+     +void luckDraw();
+     +void distributionPrizes();
+}
+State <|-- NoDraw
+State <|-- CanDraw
+State <|-- DistributionPrizes
+State <|-- Over
+
+class Context{
+    -State state(get() set());
+    +Context();
+}
+State -- Context
+NoDraw -- Context
+CanDraw -- Context
+DistributionPrizes -- Context
+Over -- Context
+
+@enduml

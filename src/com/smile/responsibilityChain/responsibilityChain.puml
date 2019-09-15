@@ -1,0 +1,27 @@
+@startuml
+class Request{
+    -String name;
+    -float price;
+}
+note top of Request : 请求类
+abstract class Handler{
+    -Handler handler;
+    +void processRequest(Request request);
+}
+Handler o-- Handler
+Handler --> Request
+class ConcreteHandlerA{
+    +void processRequest(Request request);
+}
+class ConcreteHandlerB{
+    +void processRequest(Request request);
+}
+Handler <|-- ConcreteHandlerA
+Handler <|-- ConcreteHandlerB
+note "具体处理者，处理自己负责的请求，可以访问他的后继" as N1
+ConcreteHandlerB ..  N1
+ConcreteHandlerA .. N1
+Client --> Request
+Client --> Handler
+
+@enduml
